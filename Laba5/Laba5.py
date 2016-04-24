@@ -28,13 +28,13 @@ def cabine(xleft, ydown, xright, hightleft, hightright):
     points.append([xmiddle, ydown - hightright])
     points.append([xright, ydown - hightright])
     points.append([xright, ydown])
-    canv.create_polygon(points)
+    canv.create_polygon(points, fill='red')
 
     # cabine connector
     points = []
     points.append([xmiddle + (xright - xmiddle) // 4, ydown - hightright - (hightleft - hightright) * 1 / 6])
     points.append([xmiddle + (xright - xmiddle) // 3 * 2, ydown - hightright])
-    canv.create_rectangle(points)
+    canv.create_rectangle(points, fill='red')
     return points[0][1]
 
 
@@ -48,7 +48,7 @@ def trailer(xleft, ydown, xright, connecter_y, hightright, xdownleft):
     points.append([xdownleft, ydown])
     points.append([xdownleft, connecter_y])
 
-    canv.create_polygon(points)
+    canv.create_polygon(points, fill='yellow')
 
 
 def sun(x, y, radius):
@@ -63,8 +63,16 @@ def cloud(x, y, radius):
     for i in range(15):
         rndx = randint(x - radius, x + radius)
         rndy = randint(y - radius // 3, y + radius // 3)
-        k = randint(20, 70) / 100
+        k = randint(30, 70) / 100
         canv.create_oval(rndx - radius, rndy - radius * k, rndx + radius, rndy + radius * k, width=0, fill='blue')
+
+
+def tree(x, y, higth, width, n):
+    canv.create_rectangle(x - 1 / 2 * width, y + 15, x + 1 / 2 * width, y - higth / 2, fill='brown')
+    for i in range(2 * n):
+        yk = y - higth / (2 * n) * i
+        canv.create_polygon(x - 1 / 2 * width * (2 * n - i), yk, x + 1 / 2 * width * (2 * n - i), yk, x, yk - higth / n,
+                            fill='green')
 
 
 
@@ -103,5 +111,7 @@ backwhell(back_whell_x, whell_y, whell_radius, whell_distandce)
 
 sun(100, 100, 50)
 cloud(600, 100, 50)
+
+tree(900, whell_y + whell_radius, 200, 10, 8)
 canv.pack()
 root.mainloop()
