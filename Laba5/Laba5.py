@@ -2,6 +2,7 @@ from tkinter import *
 from math import *
 from  random import *
 root = Tk()
+sgl = 0
 
 
 # Draw whell with lines
@@ -28,13 +29,28 @@ def cabine(xleft, ydown, xright, hightleft, hightright):
     points.append([xmiddle, ydown - hightright])
     points.append([xright, ydown - hightright])
     points.append([xright, ydown])
-    canv.create_polygon(points, fill='red')
+    canv.create_polygon(points, fill='red', smooth=sgl)
 
     # cabine connector
     points = []
     points.append([xmiddle + (xright - xmiddle) // 4, ydown - hightright - (hightleft - hightright) * 1 / 6])
     points.append([xmiddle + (xright - xmiddle) // 3 * 2, ydown - hightright])
     canv.create_rectangle(points, fill='red')
+    # lamp
+    canv.create_rectangle(xleft, ydown - 20, xleft + 15, ydown - 40, fill='yellow')
+    # window
+    canv.create_rectangle(xleft, ydown - hightleft + 5, xleft + 80, ydown - hightleft + 70, fill='white')
+    # руль
+    canv.create_line(xleft, ydown - hightleft + 70, xleft + 10, ydown - hightleft + 55, fill='black', width=3)
+    canv.create_line(xleft + 7, ydown - hightleft + 50, xleft + 16, ydown - hightleft + 60, fill='black', width=3)
+
+    # водитель
+
+    # canv.create_oval(xleft+20, ydown - hightleft + 30, xleft +55, ydown - hightleft + 70, fill='black', width=3)
+    canv.create_arc(xleft + 20, ydown - hightleft + 30, xleft + 55, ydown - hightleft + 70, fill='red', start=0,
+                    extent=180, width=3, style=CHORD)
+
+
     return points[0][1]
 
 
@@ -48,7 +64,7 @@ def trailer(xleft, ydown, xright, connecter_y, hightright, xdownleft):
     points.append([xdownleft, ydown])
     points.append([xdownleft, connecter_y])
 
-    canv.create_polygon(points, fill='yellow')
+    canv.create_polygon(points, fill='yellow', smooth=sgl)
 
 
 def sun(x, y, radius):
