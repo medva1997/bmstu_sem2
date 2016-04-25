@@ -38,6 +38,11 @@ def cabine(xleft, ydown, xright, hightleft, hightright):
     canv.create_rectangle(points, fill='red')
     # lamp
     canv.create_rectangle(xleft, ydown - 20, xleft + 15, ydown - 40, fill='yellow')
+
+    #img = PhotoImage(file="1.gif")
+    #simg=Image.Open('1.png')
+    #imp=ImageTK.
+    #canv.create_image(xleft, ydown - hightleft + 5 ,bitmap='1.png')
     # window
     canv.create_rectangle(xleft, ydown - hightleft + 5, xleft + 80, ydown - hightleft + 70, fill='white')
     # руль
@@ -46,9 +51,9 @@ def cabine(xleft, ydown, xright, hightleft, hightright):
 
     # водитель
 
-    # canv.create_oval(xleft+20, ydown - hightleft + 30, xleft +55, ydown - hightleft + 70, fill='black', width=3)
-    canv.create_arc(xleft + 20, ydown - hightleft + 30, xleft + 55, ydown - hightleft + 70, fill='red', start=0,
-                    extent=180, width=3, style=CHORD)
+    canv.create_oval(xleft+20, ydown - hightleft + 40, xleft +45, ydown - hightleft + 60, fill='black', width=3)
+
+    canv.create_arc(xleft + 20, ydown - hightleft + 60, xleft + 45, ydown - hightleft +79, fill='pink', start=0, extent=180, style=CHORD)
 
 
     return points[0][1]
@@ -66,6 +71,7 @@ def trailer(xleft, ydown, xright, connecter_y, hightright, xdownleft):
 
     canv.create_polygon(points, fill='yellow', smooth=sgl)
 
+    canv.create_text(xdownleft, ydown - hightright+50, text='Медведев и Ко', font="Verdana 20", anchor='w', justify=CENTER, fill='red')
 
 def sun(x, y, radius):
     for i in range(0, 180, 10):
