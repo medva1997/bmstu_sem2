@@ -1,10 +1,20 @@
 uses crt,dateutils,sysutils;
-const N3=1000000;
+const N3=250000;
       M=10;
+      cities:array[1..5] of String=('Moscow','NY','London','Miamy','Tokio');
+      works:array[1..5] of String=('reporter', 'writer','driver','fireman','policeman');
 
 type
+    Data =Record
+      city:String;
+      number:integer;
+      work:String;
+      id:integer;
+      end;
+
     Massiv = array [1 .. N3] of integer;
-    Massiv2 =array [1 .. N3] of array[1..M] of integer;
+    Massiv2= array [1 .. N3] of Data;
+
 var I,J,N,Z: integer;
     st,fn,timeUp,timeRandom,timeDown:TDateTime;
     A: Massiv;
@@ -31,45 +41,71 @@ end;
 
 
 procedure ArrayUpInf(var A: Massiv2;  N: integer) ;
+var k:integer;
 begin
   for I := 1 to N do
-    for J := 1 to M do
-      A[I][J]:=I;
+   begin
+      k:=I;
+      A[I].city:=cities[(k mod 5)+1];;
+      A[I].number:=k;
+      A[I].work:=works[(k mod 5)+1];
+      A[I].id:=N-k;     
+   end; 
 end;
 
 procedure ArrayDownInf(var A: Massiv2;  N: integer);
+var k:integer;
 begin
   for I := 1 to N do
-    for J := 1 to M do
-      A[I][J]:=N-I
+  begin
+      k:=N-I;
+      A[I].city:=cities[(k mod 5)+1];;
+      A[I].number:=k;
+      A[I].work:=works[(k mod 5)+1];
+      A[I].id:=N-k;     
+   end; 
+
+      
 end ;
 
 procedure ArrayRandomInf( var A: Massiv2;  N: integer);
+Var k:integer;
 begin
   randomize;
   for I := 1 to N do
-    for J := 1 to M do
-      A[I][J]:=random(N) ;
+  begin
+      k:=random(N);
+      A[I].city:=cities[(k mod 5)+1];;
+      A[I].number:=k;
+      A[I].work:=works[(k mod 5)+1];
+      A[I].id:=N-k;     
+   end; 
+      
+
 end;
 
 procedure Shell(var A: Massiv; N: Integer);
 var
   K, T,B: Integer;
-  H: array [1 .. 11] of Integer;
+  H: array [1 .. 15] of Integer;
 
 begin
-
-  H[1] := 1750;
-  H[2] := 701;
-  H[3] := 301;
-  H[4] := 132;
-  H[5] := 57;
-  H[6] := 23;
-  H[7] := 10;
-  H[8] := 4;
-  H[9] := 1;
-
-  for T := 1 to 9 do
+  H[1]:=7174453;
+  H[2]:=2391484;
+  H[3]:=797161;
+  H[4]:=265720;
+  H[5]:=88573;
+  H[6]:= 29524;
+  H[7] := 9841;
+  H[8] := 3280;
+  H[9] := 1093;
+  H[10] := 364;
+  H[11] := 121;
+  H[12] := 40;
+  H[13] := 13;
+  H[14] := 4;
+  H[15] := 1;
+  for T := 1 to 15 do
   begin
     K := H[T];
     for I := K + 1 to N do
@@ -92,22 +128,27 @@ end;
 procedure ShellInf(var A: Massiv2; N: Integer);
 var
   K, T: Integer;
-  H: array [1 .. 11] of Integer;
-  F: array [1 .. M] of Integer;
+  H: array [1 .. 15] of Integer;
+  F: Data;
 
 begin
+  H[1]:=7174453;
+  H[2]:=2391484;
+  H[3]:=797161;
+  H[4]:=265720;
+  H[5]:=88573;
+  H[6]:= 29524;
+  H[7] := 9841;
+  H[8] := 3280;
+  H[9] := 1093;
+  H[10] := 364;
+  H[11] := 121;
+  H[12] := 40;
+  H[13] := 13;
+  H[14] := 4;
+  H[15] := 1;
 
-  H[1] := 1750;
-  H[2] := 701;
-  H[3] := 301;
-  H[4] := 132;
-  H[5] := 57;
-  H[6] := 23;
-  H[7] := 10;
-  H[8] := 4;
-  H[9] := 1;
-
-  for T := 1 to 9 do
+  for T := 1 to 15 do
   begin
     K := H[T];
     for I := K + 1 to N do
@@ -115,37 +156,19 @@ begin
 
       F := A[I];
       J := I - K;
-        while (J > 0) and (F[2]< A[J][2]) do
+        while (J > 0) and (F.number< A[J].number) do
         begin
           A[J + K] := A[J];
           J := J - K;
         end;
         A[J + K]:= F;
       end;
+      //riteln(A[10000].city)
     end;
 
 end;
 
-procedure Shell1(var A: Massiv; N: Integer);
-var
-  i, j, step, tmp : Integer;
-begin
 
-     step:=N div 2;  // step:=step shr 1
-  While step>0 Do Begin
-    For i:=step to N Do Begin
-      tmp:=A[i];
-      j:=i;
-      While (j>=step) and (A[j-step]>tmp) Do Begin
-        A[j]:=A[j-step];
-        dec(j,step);
-      End;
-      A[j]:=tmp;
-    End;
-    step:=step div 2;  // step:=step shr 1
-  End;
-
-end;
 
 
 
@@ -220,4 +243,10 @@ while Z<3 do
   Writeln(N:7,'|',timeUp:14:0,'|',timeRandom:14:0,'|',timeDown:5:0);
   Z:=Z+1;
   end;
+  Writeln;
+  Writeln('Пример элемента с доп информацией: ');
+  Writeln(' Город: ', B[10000].city);
+  Writeln(' Номер: ', B[10000].number);
+  WriteLN(' Работа: ', B[10000].work);
+  Writeln(' id: ', B[10000].id);
 END.
