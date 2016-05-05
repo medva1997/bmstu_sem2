@@ -9,29 +9,29 @@ type
 	CN=array[1..10] of Integer;
 	TIntMassiv = array of Integer;
 
-procedure SearchInclusions(Width:Integer;Height:Integer;Matrix:Mat );
+procedure SearchInclusions(Width:Integer;Height:Integer;Matrix:Mat;var Counters: CN );
 
 implementation
 
-procedure SearchInclusions(Width:Integer;Height:Integer;Matrix:Mat);
+procedure SearchInclusions(Width:Integer;Height:Integer;Matrix:Mat;var Counters: CN);
 
 var
   I, J,K: integer;
-  Numbers: array of Integer;
-  Counts:array[1..11] of Integer;
+  Numbers: A21.TIntMassiv;
 begin
 	for I:=1 to Height do
 	begin
 		for J := 1 to Width do
 		begin
-			Setlength(Numbers,1);
-			//ConvertNumToFig(Matrix[I][J],Numbers);
-			for K := 0 to Length(Numbers) do
+			Setlength(Numbers,0);
+			ConvertNumToFig(Matrix[I][J],Numbers);
+			for K := 0 to Length(Numbers)-1 do
 			begin
+
 				if Numbers[k]<>0 then
-					Сounts[Numbers[k]]:=Сounts[Numbers[k]]+1	
+					Counters[Numbers[k]]:=Counters[Numbers[k]]+1
 				else
-					Сounts[10]:=Сounts[10]+1;				
+					Counters[10]:=Counters[10]+1
 			end;								
 		end;
 	end;

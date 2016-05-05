@@ -1,9 +1,18 @@
 
 
-uses crt,sysutils,Classes,A1,A2;
+uses crt,sysutils,Classes,A1,A2,A3;
 var Height, Width,N,I,J:Integer;
 	Matrix:array[1..100] of array[1..100] of Integer;
 	Counters: array[1..10] of Integer;
+
+procedure PrintN(N:Integer);
+begin
+	writeln('Максимально повторяющаяся цифра: ',N);
+end;
+
+
+
+
 begin
 	Read(Height);
 	Read(Width);
@@ -22,7 +31,13 @@ begin
 			end;
 			writeln;
 		end;
-	SearchInclusions(Width,Height,Matrix,Counters)
-	//N:=SearchMax(Counters)
-	//PrintN(N)
+	SearchInclusions(Width,Height,Matrix,Counters);
+	
+	for  i := 1 to 10 do
+	begin
+		writeln(i,' ',Counters[i]);		
+	end;
+	N:=SearchMax(Counters);
+	writeln(N);
+	PrintN(N)
 end.
