@@ -18,7 +18,7 @@ begin
 		begin
 			for J := 1 to Width do
 			begin
-				Readln(Matrix[I,J])				
+				Read(Matrix[I,J])				
 			end;
 		end;
 end;
