@@ -18,6 +18,23 @@ def backwhell(x, y, radius, distance):
     whell(x, y, radius)
     whell(x + distance + 2 * radius, y, radius)
 
+def driver(x,y,height,length):
+    #head
+    canv.create_oval(x, y, x + length, y + height * 0.6, fill='white')
+
+    #body
+    canv.create_line(x + length / 2, y + height * 0.6, x + length / 2, y + height)
+
+    #arms
+    canv.create_line(x + length / 2, y + height * 0.6, x + length * 0.8, y + height * 0.9)
+    canv.create_line(x + length / 2, y + height * 0.6, x + length * 0.2, y + height * 0.9)
+
+    #face
+    canv.create_line(x + length * 0.3, y + height * 0.2, x + length * 0.3, y + height * 0.1)
+    canv.create_line(x + length * 0.7, y + height * 0.2, x + length * 0.7, y + height * 0.1)
+
+    canv.create_oval(x + length * 0.35, y + height * 0.3, x + length * 0.7, y + height * 0.45, fill='white')
+
 
 def cabine(xleft, ydown, xright, hightleft, hightright):
     points = []
@@ -50,10 +67,10 @@ def cabine(xleft, ydown, xright, hightleft, hightright):
     canv.create_line(xleft + 7, ydown - hightleft + 50, xleft + 16, ydown - hightleft + 60, fill='black', width=3)
 
     # водитель
+    driver(xleft+20,ydown-hightleft+40,30,30);
+    #canv.create_oval(xleft+20, ydown - hightleft + 40, xleft +45, ydown - hightleft + 60, fill='black', width=3)
 
-    canv.create_oval(xleft+20, ydown - hightleft + 40, xleft +45, ydown - hightleft + 60, fill='black', width=3)
-
-    canv.create_arc(xleft + 20, ydown - hightleft + 60, xleft + 45, ydown - hightleft +79, fill='pink', start=0, extent=180, style=CHORD)
+    #canv.create_arc(xleft + 20, ydown - hightleft + 60, xleft + 45, ydown - hightleft +79, fill='pink', start=0, extent=180, style=CHORD)
 
 
     return points[0][1]
