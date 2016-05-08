@@ -70,6 +70,7 @@ rect_y=500
 rect_change_x = 5
 rect_change_y = 5
 people_list=[]
+smoke_list=[]
 
 for i in range(10):
     x = random.randrange(0, 360)
@@ -78,6 +79,15 @@ for i in range(10):
     color=(random.randrange(1,255),random.randrange(1,255),random.randrange(1,255))
     legs=random.randrange(0,1)
     people_list.append([x, y,speed,color,legs])
+
+for i in range(10):
+    y=random.randrange(rect_y-85,rect_y-65)
+    x=random.randrange(rect_x+110,rect_x+120)
+    smoke_list.append([x,y])
+for i in range(10):
+    y=random.randrange(rect_y-85,rect_y-65)
+    x=random.randrange(rect_x+80,rect_x+90)
+    smoke_list.append([x,y])
 
 
 while not done:
@@ -117,9 +127,19 @@ while not done:
         if people_list[i][0] > 360:
             people_list[i][0]=0
             people_list[i][1]=450
-    1120, 700
+    #1120, 700
     sheep(screen,rect_x,rect_y)
-    # Передвинуть исходную точку прямоугольника
+    for i in range(len(smoke_list)):
+        pygame.draw.circle(screen,WHITE,smoke_list[i],2,0)
+        if(abs(smoke_list[i][0]-rect_x)>30):
+            smoke_list[i][1]=random.randrange(rect_y-85,rect_y-65)
+            if i<10:
+                smoke_list[i][0]=random.randrange(rect_x+80,rect_x+90)
+            else:
+                smoke_list[i][0] = random.randrange(rect_x + 110, rect_x + 120)
+        smoke_list[i][0] += int(rect_change_x/5)
+        smoke_list[i][1] += int(rect_change_x/5)
+                # Передвинуть исходную точку прямоугольника
     if rect_y > 650 or rect_y < 480:
         rect_change_y = rect_change_y * -1
     if rect_x > 1100-230 or rect_x < 370:
