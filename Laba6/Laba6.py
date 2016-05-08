@@ -1,27 +1,40 @@
 import pygame
 import random
+
 def draw_stick_figure(screen,x,y,color,legs):
     # Голова
-    pygame.draw.ellipse(screen,BLACK,[1+x,y,10,10],0)
+    pygame.draw.ellipse(screen,(255,228,181),[1+x,y,10,10],0)
     # Ноги
     if(legs==1):
-        pygame.draw.line(screen,BLACK,[5+x,17+y],[10+x,27+y],2)
-        pygame.draw.line(screen,BLACK,[5+x,17+y],[x,27+y],2)
+        pygame.draw.line(screen,BLACK,[5+x,20+y],[10+x,30+y],2)
+        pygame.draw.line(screen,BLACK,[5+x,20+y],[x,27+y],2)
     else:
-        pygame.draw.line(screen, BLACK, [5 + x, 17 + y], [5 + x, 27 + y], 2)
-        pygame.draw.line(screen, BLACK, [5 + x, 17 + y], [5+x, 27 + y], 2)
+        pygame.draw.line(screen, BLACK, [5 + x, 20 + y], [5 + x, 30 + y], 2)
+        pygame.draw.line(screen, BLACK, [5 + x, 20 + y], [5+x, 30 + y], 2)
     # Тело
-    pygame.draw.line(screen,color,[5+x,17+y],[5+x,7+y],2)
+    pygame.draw.line(screen,color,[5+x,20+y],[5+x,10+y],2)
     # Руки
-    pygame.draw.line(screen,color,[5+x,7+y],[9+x,17+y],2)
-    pygame.draw.line(screen,color,[5+x,7+y],[1+x,17+y],2)
+    pygame.draw.line(screen,color,[5+x,10+y],[9+x,20+y],2)
+    pygame.draw.line(screen,color,[5+x,10+y],[1+x,20+y],2)
 
 def bridge(screen,x,y):
-    pygame.draw.line(screen, BLACK, [ x,  y], [ 360 +x,  y], 5)
+    Color=(139,69,19)
+    pygame.draw.line(screen, Color, [ x,  y], [ 360 +x,  y], 5)
     xcoll=0
     while xcoll<=360:
-        pygame.draw.line(screen, BLACK, [xcoll, y], [xcoll, 50+y], 5)
+        pygame.draw.line(screen, Color, [xcoll, y], [xcoll, 50+y], 5)
         xcoll+=40
+
+def sheep(screen,x,y):
+    Color = (139, 69, 19)
+    k=30
+    l=k+20
+    pygame.draw.polygon(screen,Color,[[x,y],[240+x,y],[200+x,50+y],[x,50+y]],0)
+    pygame.draw.polygon(screen, Color, [[x+20, y], [180 + x, y], [180 + x,  y-k], [20+x, y-k]], 0)
+    pygame.draw.polygon(screen, Color, [[x + 60, y-k], [140 + x, y-k], [140 + x, y - l], [60 + x, y - l]], 0)
+    pygame.draw.polygon(screen, Color, [[x + 80, y - l], [90 + x, y - l], [90 + x, y - l-15], [ 80+ x, y - l-15]], 0)
+    pygame.draw.polygon(screen, Color, [[x + 110, y - l], [120 + x, y - l], [120 + x, y - l - 15], [110 + x, y - l - 15]],
+                        0)
 
 
 
@@ -37,6 +50,7 @@ pygame.init()
 # Set the width and height of the screen [width, height]
 size = (1120, 700)
 screen = pygame.display.set_mode(size)
+
 background_image=pygame.image.load("2222.jpg").convert()
 screen.blit(background_image, [0,0])
 
@@ -50,8 +64,8 @@ done = False
 clock = pygame.time.Clock()
 
 # -------- Main Program Loop -----------
-rect_x=50
-rect_y=50
+rect_x=500
+rect_y=500
 # Скорость и направление прямоугольника
 rect_change_x = 5
 rect_change_y = 5
@@ -103,12 +117,12 @@ while not done:
         if people_list[i][0] > 360:
             people_list[i][0]=0
             people_list[i][1]=450
-
-
+    1120, 700
+    sheep(screen,rect_x,rect_y)
     # Передвинуть исходную точку прямоугольника
-    if rect_y > 450 or rect_y < 0:
+    if rect_y > 650 or rect_y < 480:
         rect_change_y = rect_change_y * -1
-    if rect_x > 650 or rect_x < 0:
+    if rect_x > 1100-230 or rect_x < 370:
         rect_change_x = rect_change_x * -1
     rect_x += rect_change_x
     rect_y += rect_change_y
