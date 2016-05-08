@@ -26,7 +26,7 @@ def bridge(screen,x,y):
         xcoll+=40
 
 def sheep(screen,x,y):
-    Color = (139, 69, 19)
+    Color = (238,99,99)
     k=30
     l=k+20
     pygame.draw.polygon(screen,Color,[[x,y],[240+x,y],[200+x,50+y],[x,50+y]],0)
@@ -35,6 +35,10 @@ def sheep(screen,x,y):
     pygame.draw.polygon(screen, Color, [[x + 80, y - l], [90 + x, y - l], [90 + x, y - l-15], [ 80+ x, y - l-15]], 0)
     pygame.draw.polygon(screen, Color, [[x + 110, y - l], [120 + x, y - l], [120 + x, y - l - 15], [110 + x, y - l - 15]],
                         0)
+    pygame.draw.circle(screen,WHITE,[x+40,y-15],10,0)
+    pygame.draw.circle(screen, WHITE, [x + 70, y - 15], 10, 0)
+    pygame.draw.circle(screen, WHITE, [x + 130, y - 15], 10, 0)
+    pygame.draw.circle(screen, WHITE, [x + 160, y - 15], 10, 0)
 
 
 
@@ -80,11 +84,11 @@ for i in range(10):
     legs=random.randrange(0,1)
     people_list.append([x, y,speed,color,legs])
 
-for i in range(10):
+for i in range(20):
     y=random.randrange(rect_y-85,rect_y-65)
     x=random.randrange(rect_x+110,rect_x+120)
     smoke_list.append([x,y])
-for i in range(10):
+for i in range(20):
     y=random.randrange(rect_y-85,rect_y-65)
     x=random.randrange(rect_x+80,rect_x+90)
     smoke_list.append([x,y])
@@ -130,14 +134,14 @@ while not done:
     #1120, 700
     sheep(screen,rect_x,rect_y)
     for i in range(len(smoke_list)):
-        pygame.draw.circle(screen,WHITE,smoke_list[i],2,0)
-        if(abs(smoke_list[i][0]-rect_x)>30):
+        pygame.draw.circle(screen,WHITE,smoke_list[i],4,0)
+        if(abs(smoke_list[i][1]-rect_y)>50):
             smoke_list[i][1]=random.randrange(rect_y-85,rect_y-65)
-            if i<10:
+            if i<20:
                 smoke_list[i][0]=random.randrange(rect_x+80,rect_x+90)
             else:
                 smoke_list[i][0] = random.randrange(rect_x + 110, rect_x + 120)
-        smoke_list[i][0] += int(rect_change_x/5)
+        smoke_list[i][0] += -1*int(rect_change_x/5)*random.randrange(1,100)
         smoke_list[i][1] += int(rect_change_x/5)
                 # Передвинуть исходную точку прямоугольника
     if rect_y > 650 or rect_y < 480:
@@ -152,7 +156,7 @@ while not done:
     pygame.display.flip()
 
     # --- Limit to 60 frames per second
-    clock.tick(20)
+    clock.tick(15)
 
 # Close the window and quit.
 pygame.quit()
