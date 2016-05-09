@@ -29,21 +29,35 @@ def bridge(screen, x, y):
 
 
 def sheep(screen, x, y):
-    Color = (238, 99, 99)
-    k = 30
-    l = k + 20
-    pygame.draw.polygon(screen, Color, [[x, y], [240 + x, y], [200 + x, 50 + y], [x, 50 + y]], 0)
-    pygame.draw.polygon(screen, Color, [[x + 20, y], [180 + x, y], [180 + x, y - k], [20 + x, y - k]], 0)
-    pygame.draw.polygon(screen, Color, [[x + 60, y - k], [140 + x, y - k], [140 + x, y - l], [60 + x, y - l]], 0)
-    pygame.draw.polygon(screen, Color, [[x + 80, y - l], [90 + x, y - l], [90 + x, y - l - 15], [80 + x, y - l - 15]],
-                        0)
-    pygame.draw.polygon(screen, Color,
-                        [[x + 110, y - l], [120 + x, y - l], [120 + x, y - l - 15], [110 + x, y - l - 15]],
-                        0)
-    pygame.draw.circle(screen, WHITE, [x + 40, y - 15], 10, 0)
-    pygame.draw.circle(screen, WHITE, [x + 70, y - 15], 10, 0)
-    pygame.draw.circle(screen, WHITE, [x + 130, y - 15], 10, 0)
-    pygame.draw.circle(screen, WHITE, [x + 160, y - 15], 10, 0)
+    COLOR = (238, 99, 99)
+    first_floor_height = 30
+    second_floor_height = 20
+    tube_height = 15
+    roof_second_flor_y = y - first_floor_height - second_floor_height
+    # Днище корабля
+    pygame.draw.polygon(screen, COLOR, [[x, y], [240 + x, y], [200 + x, 50 + y], [x, 50 + y]], 0)
+    # Первый ярус корабля
+    pygame.draw.polygon(screen, COLOR, [[x + 20, y], [180 + x, y], [180 + x, y - first_floor_height],
+                                        [20 + x, y - first_floor_height]], 0)
+    # Второй ярус, который под трубами
+    pygame.draw.polygon(screen, COLOR, [[x + 60, y - first_floor_height], [140 + x, y - first_floor_height],
+                                        [140 + x, roof_second_flor_y], [60 + x, roof_second_flor_y]], 0)
+    # Труба задняя
+    pygame.draw.polygon(screen, COLOR, [[x + 80, roof_second_flor_y], [90 + x, roof_second_flor_y],
+                                        [90 + x, roof_second_flor_y - tube_height],
+                                        [80 + x, roof_second_flor_y - tube_height]], 0)
+    # Труба передняя
+    pygame.draw.polygon(screen, COLOR, [[x + 110, roof_second_flor_y], [120 + x, roof_second_flor_y],
+                                        [120 + x, roof_second_flor_y - tube_height],
+                                        [110 + x, roof_second_flor_y - tube_height]], 0)
+
+    centre_y_porthole = y - int(first_floor_height / 2)
+    r_porthole = int((first_floor_height - 10) / 2)
+    # Элюминаторы слева направо
+    pygame.draw.circle(screen, WHITE, [x + 40, centre_y_porthole], r_porthole, 0)
+    pygame.draw.circle(screen, WHITE, [x + 70, centre_y_porthole], r_porthole, 0)
+    pygame.draw.circle(screen, WHITE, [x + 130, centre_y_porthole], r_porthole, 0)
+    pygame.draw.circle(screen, WHITE, [x + 160, centre_y_porthole], r_porthole, 0)
 
 
 # Define some colors
