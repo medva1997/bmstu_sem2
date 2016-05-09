@@ -1,7 +1,8 @@
 import pygame
 import random
 
-#Человечки, legs 1-раздвинуть ноги, остальное сдвинуты
+
+# Человечки, legs 1-раздвинуть ноги, остальное сдвинуты
 def draw_stick_figure(screen, x, y, color, legs):
     # Голова
     pygame.draw.ellipse(screen, (255, 228, 181), [1 + x, y, 10, 10], 0)
@@ -18,15 +19,17 @@ def draw_stick_figure(screen, x, y, color, legs):
     pygame.draw.line(screen, color, [5 + x, 10 + y], [9 + x, 20 + y], 2)
     pygame.draw.line(screen, color, [5 + x, 10 + y], [1 + x, 20 + y], 2)
 
-#Мост
+
+# Мост
 def bridge(screen, x, y):
     Color = (139, 69, 19)
     pygame.draw.line(screen, Color, [x, y], [360 + x, y], 5)
     xcoll = 0
-    #Колонны
+    # Колонны
     while xcoll <= 360:
         pygame.draw.line(screen, Color, [xcoll, y], [xcoll, 50 + y], 5)
         xcoll += 40
+
 
 # Корабль, x,y левая позиция 1 яруса
 def sheep(screen, x, y):
@@ -60,20 +63,22 @@ def sheep(screen, x, y):
     pygame.draw.circle(screen, WHITE, [x + 130, centre_y_porthole], r_porthole, 0)
     pygame.draw.circle(screen, WHITE, [x + 160, centre_y_porthole], r_porthole, 0)
 
+
 # Иницыализация дыма.
-def create_smoke_sheep(x_left_tube,x_rigrt_tube,y,tube_width, tube_height,n):
+def create_smoke_sheep(x_left_tube, x_rigrt_tube, y, tube_width, tube_height, n):
     smoke_list = []
-    #Задняя труба
+    # Задняя труба
     for i in range(n):
-        y = random.randrange(y-tube_height, y )
+        y = random.randrange(y - tube_height, y)
         x = random.randrange(x_left_tube, x_left_tube + tube_width)
         smoke_list.append([x, y])
-    #Передняя труба
+    # Передняя труба
     for i in range(n):
-        y = random.randrange(y-tube_height, y)
+        y = random.randrange(y - tube_height, y)
         x = random.randrange(x_rigrt_tube, x_rigrt_tube + tube_width)
         smoke_list.append([x, y])
     return smoke_list
+
 
 # Иницыализация людей.
 def create_din_piople():
@@ -85,22 +90,22 @@ def create_din_piople():
         color = (random.randrange(1, 255), random.randrange(1, 255), random.randrange(1, 255))
         legs = random.randrange(0, 1)
         people_list.append([x, y, speed, color, legs])
-    return  people_list
+    return people_list
+
 
 # Рисуем и меняем дым
-def draw_and_change_smoke(screen,sm_list,rect_x,rect_y,rect_change_x):
+def draw_and_change_smoke(screen, sm_list, rect_x, rect_y, rect_change_x):
     for i in range(len(sm_list)):
         pygame.draw.circle(screen, WHITE, sm_list[i], 4, 0)
         if (abs(sm_list[i][1] - rect_y) > 30):
             sm_list[i][1] = random.randrange(rect_y - 85, rect_y - 65)
-            if i <len(sm_list)/2:
+            if i < len(sm_list) / 2:
                 sm_list[i][0] = random.randrange(rect_x + 80, rect_x + 90)
             else:
                 sm_list[i][0] = random.randrange(rect_x + 110, rect_x + 120)
         sm_list[i][0] += -1 * int(rect_change_x / 5) * random.randrange(1, 100)
         sm_list[i][1] += int(rect_change_x / 5)
     return sm_list
-
 
 
 # Define some colors
@@ -130,21 +135,19 @@ clock = pygame.time.Clock()
 # позиция динамического корабля
 rect_x = 550
 rect_y = 550
-#Позиция статического корабля.
-static_rect_x=360
-static_rect_y=480
+# Позиция статического корабля.
+static_rect_x = 360
+static_rect_y = 480
 # Скорость и направление корабля
 rect_change_x = 5
 rect_change_y = 5
-#Динамический дым и объекты
+# Динамический дым и объекты
 people_list = []
 smoke_list = []
 
-smoke_list=create_smoke_sheep( 10000+110,10000+80,10000-65,10,20,20)
-people_list=create_din_piople()
-smoke_list_static =create_smoke_sheep( static_rect_x+110, static_rect_x+80,static_rect_y-65,10,20,10)
-
-
+smoke_list = create_smoke_sheep(10000 + 110, 10000 + 80, 10000 - 65, 10, 20, 20)
+people_list = create_din_piople()
+smoke_list_static = create_smoke_sheep(static_rect_x + 110, static_rect_x + 80, static_rect_y - 65, 10, 20, 10)
 
 while not done:
     # --- Main event loop
@@ -181,16 +184,16 @@ while not done:
             people_list[i][1] = 450
 
     sheep(screen, static_rect_x, static_rect_y)
-    smoke_list_static=draw_and_change_smoke(screen, smoke_list_static, static_rect_x, static_rect_y ,1)
+    smoke_list_static = draw_and_change_smoke(screen, smoke_list_static, static_rect_x, static_rect_y, 1)
     sheep(screen, rect_x, rect_y)
-    smoke_list=draw_and_change_smoke(screen, smoke_list, rect_x, rect_y,rect_change_x)
+    smoke_list = draw_and_change_smoke(screen, smoke_list, rect_x, rect_y, rect_change_x)
 
     if rect_y > 650 or rect_y < 540:
         rect_change_y = rect_change_y * -1
     if rect_x > 1100:
-            rect_x = -200
+        rect_x = -200
     rect_y += rect_change_y
-    rect_x+=rect_change_x
+    rect_x += rect_change_x
 
     # --- Go ahead and update the screen with what we've drawn.
     pygame.display.flip()
