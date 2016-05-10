@@ -1,3 +1,4 @@
+{$INCLUDE directive.txt}
 unit A2;
 
 interface
@@ -16,15 +17,23 @@ implementation
 procedure SearchInclusions(Width:Integer;Height:Integer;Matrix:Mat;var Counters: CN);
 
 var
-  I, J,K: integer;
+  I, J,K,Len: integer;
   Numbers: A21.TIntMassiv;
 begin
+	Assert(Height>0);
+	Assert(Width> 0);
+
 	for I:=1 to Height do
 	begin
 		for J := 1 to Width do
 		begin
 			Setlength(Numbers,0);
+			
 			ConvertNumToFig(Matrix[I][J],Numbers);
+
+			Len := length(Numbers);
+			Assert(Len <> 0);
+
 			for K := 0 to Length(Numbers)-1 do
 			begin
 

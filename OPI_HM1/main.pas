@@ -1,7 +1,7 @@
-
+{$INCLUDE directive.txt}
 
 uses crt,sysutils,Classes,A1,A2,A3;
-var Height, Width,N,I,J:Integer;
+var Height, Width,N,I,J,Len:Integer;
 	Matrix:array[1..100] of array[1..100] of Integer;
 	Counters: array[1..10] of Integer;
 
@@ -25,22 +25,27 @@ begin
 	end;
 	writeln('Введите эллементы матрицы: ');
 	ReadMatrix(Width,Height, Matrix);
-	//for I:=1 to Height do
-	//	begin
-	//		for J := 1 to Width do
-	//		begin
-	//			write(Matrix[I,J]);
-	//			write(' ');			
-	//		end;
-	//		writeln;
-	//	end;
+	writeln('Введите эллементы матрицы: ');
+	for I:=1 to Height do
+		begin
+			for J := 1 to Width do
+			begin
+				write(Matrix[I,J]);
+				write(' ');			
+			end;
+			writeln;
+		end;
 	SearchInclusions(Width,Height,Matrix,Counters);
+
+
+	Len := length(Counters);
+	Assert(Len > 0);
 	
 	//for  i := 1 to 10 do
 	//begin
 	//	writeln(i,' ',Counters[i]);		
 	//end;
 	N:=SearchMax(Counters);
-	//writeln(N);
+	Assert(N<10);
 	PrintN(N)
 end.

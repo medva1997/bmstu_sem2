@@ -1,3 +1,4 @@
+{$INCLUDE directive.txt}
 unit A1;
 
 interface
@@ -14,6 +15,9 @@ procedure ReadMatrix(Width:Integer;Height:Integer;var Matrix:Mat);
 var
   I, J : integer;
 begin
+
+	Assert(Height>0);
+	Assert(Width> 0);
 	for I:=1 to Height do
 		begin
 			for J := 1 to Width do

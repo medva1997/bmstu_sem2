@@ -1,4 +1,4 @@
-
+{$INCLUDE directive.txt}
 unit A21;
 
 interface

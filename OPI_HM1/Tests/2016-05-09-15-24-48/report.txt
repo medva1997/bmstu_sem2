@@ -1,0 +1,20 @@
+diff 2016-05-09-15-24-48/outin1.txt answers/outin1.txt
+diff 2016-05-09-15-24-48/outin2.txt answers/outin2.txt
+diff 2016-05-09-15-24-48/outin3.txt answers/outin3.txt
+diff 2016-05-09-15-24-48/outin4.txt answers/outin4.txt
+diff 2016-05-09-15-24-48/outin5.txt answers/outin5.txt
+diff 2016-05-09-15-24-48/outin6.txt answers/outin6.txt
+diff 2016-05-09-15-24-48/outin7.txt answers/outin7.txt
+diff 2016-05-09-15-24-48/outin8.txt answers/outin8.txt
+diff 2016-05-09-15-24-48/outin9.txt answers/outin9.txt
+diff 2016-05-09-15-24-48/TestA1out.txt answers/TestA1out.txt
+Module A2 Test1 pass
+Module A2 Test2 pass
+Module A3 Test1 pass
+Module A3 Test2 pass
+Module A3 Test3 pass
+Module A3 Test4 pass
+Module A3 Test5 pass
+Module A21 Test1 pass
+Module A21 Test2 pass
+Module A21 Test3 pass
