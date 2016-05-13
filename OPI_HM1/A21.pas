@@ -1,4 +1,8 @@
 {$INCLUDE directive.txt}
+{	Convert number to arrray of digits
+	@author(Medvedev Alexey)
+	@lastmod(2016/05/13 22:06:00)	
+}
 unit A21;
 
 interface
@@ -6,11 +10,21 @@ interface
 uses
   Classes, SysUtils;
 
-type TIntMassiv = array of Integer;
+type
+{ 
+	Dinamic array of integer
+}
+	TIntMassiv = array of Integer;
 
+{
+ Convert number to arrray of digits. Call procedure as ConvertNumToFig(-67,dinamic_int_array)
+ @param(M  Integer number)
+ @param(Numbers  Array of integer for save digits of number)
+}
 Procedure ConvertNumToFig(M:Integer; var Numbers:TIntMassiv);
 
 implementation
+
 procedure ConvertNumToFig(M:Integer; var Numbers:TIntMassiv);
 var i:integer;
 begin

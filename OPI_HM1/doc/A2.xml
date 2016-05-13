@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generated using FPDoc - (c) 2000-2012 FPC contributors and Sebastian Guenther, sg@freepascal.org -->
+<fp-refdoc>
+  <unit name="A2">
+    <interface>
+      <uses>
+        <unit-ref name="System"/>
+        <unit-ref name="Classes"/>
+        <unit-ref name="SysUtils"/>
+        <unit-ref name="A21"/>
+      </uses>
+      <procedure name="SearchInclusions"/>
+    </interface>
+  </unit>
+</fp-refdoc>

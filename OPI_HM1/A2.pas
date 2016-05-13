@@ -1,4 +1,8 @@
 {$INCLUDE directive.txt}
+{	Search inclusions of digits
+	@author(Medvedev Alexey)
+	@lastmod(2016/05/13 22:04:00)	
+}
 unit A2;
 
 interface
@@ -6,10 +10,23 @@ interface
 uses
   Classes, SysUtils,A21;
 type
+{ 
+	Matrix 100x100 of integer
+}
 	Mat=array[1..100] of array[1..100] of Integer;
+{ 
+	Integer array with 10 length
+}
 	CN=array[1..10] of Integer;
-	TIntMassiv = array of Integer;
 
+{
+	Call procedure as SearchInclusions(10;10;Matrix;Counters);
+ @param(Width  Integer, width of matrix)
+ @param(Height  Integer, height of matrix)
+ @param(Matrix  Array 100x100 of integer where saved user matrix)
+ @param(Counters  Array with 10 length where need to save number of inclusions)
+
+}
 procedure SearchInclusions(Width:Integer;Height:Integer;Matrix:Mat;var Counters: CN );
 
 implementation

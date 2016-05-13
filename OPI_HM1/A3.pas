@@ -1,3 +1,8 @@
+{$INCLUDE directive.txt}
+{	Search the maximum number of inclusions
+	@author(Medvedev Alexey)
+	@lastmod(2016/05/13 22:25:00)	
+}
 unit A3;
 
 interface
@@ -5,8 +10,16 @@ interface
 uses
   Classes, SysUtils;
 type
+{ 
+	Integer array with 10 length
+}
 	CN=array[1..10] of Integer;
 
+{
+ Search the maximum number of inclusions.Call function as SearchMax(Counters)
+ @param(Counters  Array with 10 length where was saved number of inclusions)
+ @return(SearchMax Integer, value of most popular digit)
+}
 function SearchMax(Counters: CN ):Integer;
 
 implementation

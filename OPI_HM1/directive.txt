@@ -1,0 +1,13 @@
+{$DEFINE DEBUG}
+
+{$IFDEF DEBUG}
+{$C+}
+{$R+}
+{$I+}
+{$Q+}
+{$ELSE}
+{$C-}
+{$R-}
+{$I-}
+{$Q-}
+{$ENDIF}

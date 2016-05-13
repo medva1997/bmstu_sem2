@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generated using FPDoc - (c) 2000-2012 FPC contributors and Sebastian Guenther, sg@freepascal.org -->
+<fp-refdoc>
+  <unit name="A3">
+    <interface>
+      <uses>
+        <unit-ref name="System"/>
+        <unit-ref name="Classes"/>
+        <unit-ref name="SysUtils"/>
+      </uses>
+      <function name="SearchMax"/>
+    </interface>
+  </unit>
+</fp-refdoc>
