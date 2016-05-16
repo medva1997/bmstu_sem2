@@ -111,7 +111,7 @@ def draw_and_change_smoke(screen, sm_list, rect_x, rect_y, rect_change_x):
 # Define some colors
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
-GREEN = (0, 255, 0)
+GREEN = (210, 105, 30)
 RED = (255, 0, 0)
 
 pygame.init()
@@ -167,8 +167,19 @@ while not done:
     screen.blit(background_image, [0, 0])
 
     # --- Drawing code should go here
-    bridge(screen, 0, 480)
 
+    pygame.draw.polygon(screen, GREEN, [[0, 480], [180, 480], [180, 370], [0, 370]], 0)
+    # pygame.draw.polygon(screen, WHITE, [[20, 440], [40, 440], [40, 400], [20, 400]], 0)
+    m1 = 70
+    m2 = 90
+    pygame.draw.polygon(screen, WHITE, [[m1, 440], [m2, 440], [m1, 400], [m2, 400]], 0)
+    m1 = 120
+    m2 = 140
+    pygame.draw.polygon(screen, WHITE, [[m1, 440], [m2, 440], [m1, 400], [m2, 400]], 0)
+    m1 = 30
+    m2 = 50
+    pygame.draw.polygon(screen, WHITE, [[m1, 440], [m2, 440], [m1, 400], [m2, 400]], 0)
+    bridge(screen, 0, 480)
     for i in range(len(people_list)):
         # Рисуем человечка
         draw_stick_figure(screen, people_list[i][0], people_list[i][1], people_list[i][3], people_list[i][4])
