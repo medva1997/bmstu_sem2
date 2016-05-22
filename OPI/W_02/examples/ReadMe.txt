@@ -1,0 +1,6 @@
+﻿directives		- примеры использования директив (Lazarus)
+directives.turbo	- примеры использования директив (Turbo Delphi)
+palindrome.1		- модульные тесты, IsNumber не обрабатывает пустые слова (Lazarus)
+palindrome.2		- модульные тесты, IsNumber обрабатывает пустые слова (Lazarus)
+palindrome.bat		- организация функционального тестирования  (Lazarus)
+palindrome.doc		- автоматическое генерирование документации (Turbo Delphi)
