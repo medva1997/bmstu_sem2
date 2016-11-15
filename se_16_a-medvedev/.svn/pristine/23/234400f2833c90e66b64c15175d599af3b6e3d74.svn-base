@@ -1,0 +1,13 @@
+DATE=`date +%Y-%m-%d-%H-%M-%S`
+mkdir $DATE
+ls | grep '^in' | while read line
+do
+	#echo $line
+	.././main< $line >$DATE/'out'$line
+	echo diff $DATE/'out'$line answers/'out'$line
+	diff $DATE/'out'$line answers/'out'$line
+done
+
+.././TestA1 <TestA1in.txt >$DATE/TestA1out.txt
+echo diff $DATE/'TestA1out.txt' $line answers/TestA1out.txt
+diff $DATE/'TestA1out.txt' $line answers/TestA1out.txt

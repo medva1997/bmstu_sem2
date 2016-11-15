@@ -1,0 +1,2 @@
+Test 1 passed
+Test 2 passed
